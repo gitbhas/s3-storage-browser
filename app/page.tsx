@@ -9,7 +9,7 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
 Amplify.configure(outputs);
-
+import { StorageBrowser } from '../components/StorageBrowser';
 const client = generateClient<Schema>();
 
 export default function App() {
@@ -31,14 +31,20 @@ export default function App() {
     });
   }
 
-   return (
+    return (
     <Authenticator>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {user?.username}</h1>
-          <button onClick={signOut}>Sign out</button>
+            <h1>Hello {user?.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+
+          {/* StorageBrowser Component */}
+          <h2>Your Files</h2>
+          <StorageBrowser />
+
         </main>
       )}
     </Authenticator>
   );
+}
 }
